@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.ipynb_checkpoints/
+
+# Large artefacts live on Zenodo, not in git
+results/
+*.npz
+*.npy
+
+# LaTeX build artefacts
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz

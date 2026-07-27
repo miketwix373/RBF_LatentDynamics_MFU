@@ -1,0 +1,111 @@
+% theta = 70: polar angle from z-axis (70 deg -> mostly side view, 20 deg above horizon)
+% phi   = 0: no azimuthal rotation
+\tdplotsetmaincoords{70}{-15}
+
+\begin{tikzpicture}[tdplot_main_coords]
+
+  \def\W{2.625}  % image width in cm (images are square 600x600, 75% of 3.5)
+  \def\G{0.3}  % gap between images in cm
+
+  % Snap10 images (tau_x, tau_y) placed early so imgTx10.south is available;
+  % the pair is centred about x = 13.
+  \begin{scope}[canvas is xy plane at z=0, transform shape]
+    \node[inner sep=0, name=imgTx10] at ({13-(\W+\G)/2}, -7)
+      {\includegraphics[width=\W cm]{Workflow/wss_x_snap10.png}};
+    \node[inner sep=0, name=imgTz10] at ({13+(\W+\G)/2}, -7)
+      {\includegraphics[width=\W cm]{Workflow/wss_y_snap10.png}};
+  \end{scope}
+
+  % Alignment coordinate: same y level for both POD boxes
+  \coordinate (pod2align) at ($(imgTx10.south) + (0,-1.7cm)$);
+
+  % Extract screen-y of snap10 centre to place snap0 images at the same height
+  \path (imgTx10.center);
+  \pgfgetlastxy{\snapTenScreenX}{\snapTenScreenY}
+
+  % snap0 images (tau_x, tau_y), centred about x = 0, same screen-y as snap10
+  \begin{scope}[yshift=\snapTenScreenY]
+    \begin{scope}[canvas is xy plane at z=0, transform shape]
+      \node[inner sep=0, name=imgTx] at ({-(\W+\G)/2}, 0)
+        {\includegraphics[width=\W cm]{Workflow/wss_x_snap0.png}};
+      \node[inner sep=0, name=imgTz] at ({(\W+\G)/2}, 0)
+        {\includegraphics[width=\W cm]{Workflow/wss_y_snap0.png}};
+    \end{scope}
+  \end{scope}
+
+  % Field labels above each image (normal 2D, upright)
+  \node[above=4pt of imgTx.north, font=\large, name=lblTx] {$\tau_x$};
+  \node[above=4pt of imgTz.north, font=\large, name=lblTz] {$\tau_y$};
+
+  % Time label centred above the pair, larger font
+  \coordinate (topmid0) at ($(lblTx.north)!0.5!(lblTz.north)$);
+  \node[above=8pt of topmid0, font=\LARGE] {$t = T_i$};
+
+  % Centre-bottom of the pair: spine anchor for the vertical flow
+  \coordinate (botmid0) at ($(imgTx.south)!0.5!(imgTz.south)$);
+
+  % POD Encode box centred under the pair, then arrow from the pair down to it
+  \node[draw=black, thick, fill=white, rounded corners=4pt, align=center,
+        inner sep=8pt, font=\large, name=podbox, minimum width=3.5cm]
+        at (botmid0 |- pod2align) {\textbf{POD Encode}};
+  \draw[-Stealth, ultra thick, draw=black!70]
+    ([yshift=-0.3cm]botmid0) -- ([yshift=0.3cm]podbox.north);
+
+  % Arrow continuing downward from POD box
+  \draw[-Stealth, ultra thick, draw=black!70]
+    ([yshift=-0.3cm]podbox.south) -- ++(0,-1.0cm)
+    node[coordinate, name=arrow2end] {};
+
+  % Coefficients text below second arrow (with gap)
+  \node[below=0.3cm of arrow2end, font=\LARGE, name=coeffTi]
+    {$\left\{a_1, a_2, a_3, \ldots, a_{d_o}\right\}\big|_{t=T_i}$};
+
+  % Arrow from coefficients text to the right, with gap
+  \draw[-Stealth, ultra thick, draw=black!70]
+    ([xshift=0.5cm]coeffTi.east) -- ++(1.5cm,0)
+    node[coordinate, name=sindyarrow] {};
+
+  % ODE evolution box
+  \node[right=0.4cm of sindyarrow, draw=black, thick,
+        fill=white, rounded corners=4pt,
+        inner sep=8pt, align=center, name=sindybox] {%
+    \textbf{ODE evolution}\\[4pt]
+    $\dot{\bm{a}} = f(\bm{a})$};
+
+  % Arrow to the right of SINDy box, with gap
+  \draw[-Stealth, ultra thick, draw=black!70]
+    ([xshift=0.5cm]sindybox.east) -- ++(1.5cm,0)
+    node[coordinate, name=arrow3end] {};
+
+  % Output coefficients at t = Ti + Delta t
+  \node[right=0.4cm of arrow3end, font=\LARGE, name=coeffTj]
+    {$\left\{a_1, a_2, a_3, \ldots, a_{d_o}\right\}\big|_{t=T_i+\Delta t}$};
+
+  % POD Decode: 1.7cm below snap10 images, centred on coeffTj x
+  \node[draw=black, thick, fill=white, rounded corners=4pt, align=center,
+        inner sep=8pt, font=\large, name=pod2box, minimum width=3.5cm]
+        at ($(coeffTj.center |- imgTx10.south) + (0,-1.7cm)$)
+        {\textbf{POD Decode}};
+
+  % Arrow from POD Encode to POD Decode with Delta t label
+  \draw[-Stealth, ultra thick, draw=black!70]
+    ([xshift=0.3cm]podbox.east) -- ([xshift=-0.3cm]pod2box.west)
+    node[midway, above=2pt, font=\large] {$\Delta t$};
+
+  % Arrow upward from coeffTj to POD Decode (gaps on both ends)
+  \draw[-Stealth, ultra thick, draw=black!70]
+    ([yshift=0.3cm]coeffTj.north) -- ([yshift=-0.3cm]pod2box.south);
+
+  % Arrow upward from POD Decode to bottom of snap10 images
+  \draw[-Stealth, ultra thick, draw=black!70]
+    ([yshift=0.3cm]pod2box.north) -- ($(pod2box.north |- imgTx10.south) + (0,-0.3cm)$);
+
+  % Field labels above snap10 images (2D, upright)
+  \node[above=4pt of imgTx10.north, font=\large, name=lblTx10] {$\tau_x$};
+  \node[above=4pt of imgTz10.north, font=\large, name=lblTz10] {$\tau_y$};
+
+  % Time label centred above snap10 images
+  \coordinate (topmid10) at ($(lblTx10.north)!0.5!(lblTz10.north)$);
+  \node[above=8pt of topmid10, font=\LARGE] {$t = T_i + \Delta t$};
+
+\end{tikzpicture}
