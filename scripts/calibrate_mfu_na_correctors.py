@@ -24,7 +24,7 @@ from scipy.spatial import cKDTree
 
 SHARED_ROOT = (next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()))
 MFU = SHARED_ROOT / "results/MFU_NA"
-# Fixed soft-corrector shape, matching launch_mfu_na_corrector_calib.sh.
+# Fixed soft-corrector shape used for calibration.
 SOFT_ALPHA, SOFT_K, SOFT_P = 0.85, 10.0, 2.0
 CLOUD_Q, N_CLOUD, CLOUD_SEED = 0.99, 10000, 0
 
