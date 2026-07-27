@@ -1,7 +1,7 @@
 # Data
 
-No data ships in this repository. Everything is hosted on Zenodo (DOI: TODO) and
-fetched with `../scripts/fetch_data.sh`.
+No data ships in this repository. Everything is hosted on Zenodo (DOI: TODO);
+download and extract the archives into `data/` and `results/`.
 
 Required Zenodo inputs:
 
