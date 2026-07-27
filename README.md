@@ -16,8 +16,9 @@ Dependencies: numpy, scipy, matplotlib (see `pyproject.toml`).
 
 ## Data
 
-All FOM data and precomputed results artefacts are hosted on Zenodo (DOI: TODO);
-download and extract them into `data/` and `results/` — see `data/README.md`.
+All FOM data and precomputed results artefacts are hosted on Zenodo, DOI
+[10.5281/zenodo.21629801](https://doi.org/10.5281/zenodo.21629801); download and
+extract them into `data/` and `results/` — see `data/README.md`.
 
 ## Reproducing the figures
 

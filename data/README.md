@@ -1,7 +1,8 @@
 # Data
 
-No data ships in this repository. Everything is hosted on Zenodo (DOI: TODO);
-download and extract the archives into `data/` and `results/`.
+No data ships in this repository. Everything is hosted on Zenodo, DOI
+[10.5281/zenodo.21629801](https://doi.org/10.5281/zenodo.21629801); download and
+extract the archives into `data/` and `results/`.
 
 Required Zenodo inputs:
 
