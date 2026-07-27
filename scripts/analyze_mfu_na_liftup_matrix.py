@@ -84,7 +84,7 @@ from find_mfu_na_upo import RBFField  # noqa: E402
 from plot_mfu_na_phase_circulation import (  # noqa: E402
     _highpass, _signals, _streak_amp, CSZ, NGRID, TAU_W)
 
-SHARED_ROOT = Path("/users/sbrw610/sharedscratch/RBF_ROM")
+SHARED_ROOT = (next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()))
 MFU = SHARED_ROOT / "results/MFU_NA"
 TPLUS_PER_S = 11.289
 DT_STRIDED = 0.1                       # s per strided frame

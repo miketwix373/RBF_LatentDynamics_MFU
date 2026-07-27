@@ -39,7 +39,7 @@ from pathlib import Path
 
 import numpy as np
 
-SHARED_ROOT = Path("/users/sbrw610/sharedscratch/RBF_ROM")
+SHARED_ROOT = (next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()))
 MFU = SHARED_ROOT / "results/MFU_NA"
 FA = MFU / "field_analysis"
 

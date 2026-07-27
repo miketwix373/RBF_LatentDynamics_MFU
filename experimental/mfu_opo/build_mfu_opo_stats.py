@@ -33,7 +33,7 @@ SPLIT = 0.8     # fraction of the record used for training (stats.npz)
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--data-dir", type=Path,
-                    default=Path("/users/sbrw610/sharedscratch/RBF_ROM/data/MFU_OPO"))
+                    default=(next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()) / "data/MFU_OPO"))
     args = ap.parse_args()
 
     steps = np.load(args.data_dir / "wss_steps.npy")

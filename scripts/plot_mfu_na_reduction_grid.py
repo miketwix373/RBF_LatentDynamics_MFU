@@ -30,7 +30,7 @@ from pathlib import Path
 
 import numpy as np
 
-SHARED_ROOT = Path("/users/sbrw610/sharedscratch/RBF_ROM")
+SHARED_ROOT = (next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()))
 DEFAULT_SVD = SHARED_ROOT / "results/MFU_NA/pod/svd_basis.npz"
 DEFAULT_OUT = SHARED_ROOT / "results/MFU_NA/paper_images/reduction_grid.pdf"
 

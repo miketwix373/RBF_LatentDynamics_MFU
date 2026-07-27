@@ -34,8 +34,8 @@ Outputs (`<out-dir>/`):
 Usage
 -----
     python scripts/run_integrate_compare.py \\
-        --model    /users/sbrw610/sharedscratch/RBF_ROM/results/LOR96/F8/fit_K1_n1200_raw/model.npz \\
-        --out-dir  /users/sbrw610/sharedscratch/RBF_ROM/results/LOR96/F8/integration_K1_n1200_raw \\
+        --model    results/LOR96/F8/fit_K1_n1200_raw/model.npz \\
+        --out-dir  results/LOR96/F8/integration_K1_n1200_raw \\
         --T 50.0  --short-window-T 5.0  --long-window-t0 10.0 --n-ic 8
 """
 

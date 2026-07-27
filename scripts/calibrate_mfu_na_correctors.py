@@ -22,7 +22,7 @@ from pathlib import Path
 import numpy as np
 from scipy.spatial import cKDTree
 
-SHARED_ROOT = Path("/users/sbrw610/sharedscratch/RBF_ROM")
+SHARED_ROOT = (next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()))
 MFU = SHARED_ROOT / "results/MFU_NA"
 # Fixed soft-corrector shape, matching launch_mfu_na_corrector_calib.sh.
 SOFT_ALPHA, SOFT_K, SOFT_P = 0.85, 10.0, 2.0

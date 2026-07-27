@@ -15,7 +15,7 @@ from pathlib import Path
 
 import numpy as np
 
-SHARED_ROOT = Path("/users/sbrw610/sharedscratch/RBF_ROM")
+SHARED_ROOT = (next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()))
 MFU = SHARED_ROOT / "results/MFU_NA"
 # Panels are (d_o, directory). Every plain least-squares alpha*/sweep.npz under
 # the directory is picked up automatically; ridge-regularised sweeps (name

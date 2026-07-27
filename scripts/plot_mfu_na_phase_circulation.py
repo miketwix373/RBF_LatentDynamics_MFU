@@ -38,7 +38,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from compute_mfu_na_cluster_jacobians import (  # noqa: E402
     _load_model, _phi_and_grad, TPLUS_PER_S as JAC_TPLUS_PER_S)
 
-SHARED_ROOT = Path("/users/sbrw610/sharedscratch/RBF_ROM")
+SHARED_ROOT = (next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()))
 CSZ = 64 * 64
 U_TAU = 180.0 / 2870.0
 TAU_W = U_TAU ** 2

@@ -48,7 +48,7 @@ from run_integrate_compare import (  # noqa: E402
 )
 from run_kschao_corrector_series import _load_model  # noqa: E402
 
-SHARED_ROOT = Path("/users/sbrw610/sharedscratch/RBF_ROM")
+SHARED_ROOT = (next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()))
 TPLUS_PER_S = 11.289   # wall-unit conversion: 1 s = 11.289 t+
 DEFAULT_MODEL = SHARED_ROOT / "results/MFU_NA/do45/alpha3.5/model_n04800.npz"
 DEFAULT_CALIB = SHARED_ROOT / "results/MFU_NA/do45/alpha3.5/corrector_calib.npz"

@@ -59,16 +59,16 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument(
         "--coords-path", type=Path,
-        default=Path("/users/sbrw610/sharedscratch/RBF_ROM/results/KS_BUR/coords_arc.npz"),
+        default=(next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()) / "results/KS_BUR/coords_arc.npz"),
     )
     parser.add_argument(
         "--svd-path", type=Path,
-        default=Path("/users/sbrw610/sharedscratch/RBF_ROM/results/KS_BUR/svd_basis.npz"),
+        default=(next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()) / "results/KS_BUR/svd_basis.npz"),
         help="optional; used only to log cumulative energy at d_o",
     )
     parser.add_argument(
         "--out-dir", type=Path,
-        default=Path("/users/sbrw610/sharedscratch/RBF_ROM/results/KS_BUR/arc_cluster_sweep"),
+        default=(next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()) / "results/KS_BUR/arc_cluster_sweep"),
     )
     parser.add_argument("--K-min", type=int, default=1)
     parser.add_argument("--K-max", type=int, default=12)

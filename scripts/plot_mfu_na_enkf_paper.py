@@ -38,7 +38,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-SHARED_ROOT = Path("/users/sbrw610/sharedscratch/RBF_ROM")
+SHARED_ROOT = (next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()))
 ENKF = SHARED_ROOT / "results/MFU_NA/EnKF"
 COORDS = SHARED_ROOT / "results/MFU_NA/pod/coords_do45.npz"
 OUT_DIR = SHARED_ROOT / "results/MFU_NA/paper_images"

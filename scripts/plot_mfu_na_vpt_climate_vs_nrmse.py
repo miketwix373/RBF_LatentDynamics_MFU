@@ -21,7 +21,7 @@ from pathlib import Path
 
 import numpy as np
 
-SHARED_ROOT = Path("/users/sbrw610/sharedscratch/RBF_ROM")
+SHARED_ROOT = (next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()))
 MFU = SHARED_ROOT / "results/MFU_NA"
 LABEL_FS, TICK_FS = 26, 24
 TPLUS_PER_S = 11.289  # t+ = t u_tau^2/nu, u_tau=180/2870, nu=1/2870

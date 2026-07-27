@@ -32,9 +32,7 @@ import numpy as np
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 # Anchor for the paper figures; both scratch roots are the same repo.
-DEFAULT_OUT = Path(
-    "/users/sbrw610/sharedscratch/RBF_ROM/results/LOR63/images_paper/fig1_clustering.pdf"
-)
+DEFAULT_OUT = (next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()) / "results/LOR63/images_paper/fig1_clustering.pdf")
 
 
 def lor63_rhs(u: np.ndarray, sigma: float, rho: float, beta: float) -> np.ndarray:

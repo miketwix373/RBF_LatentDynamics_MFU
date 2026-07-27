@@ -39,7 +39,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from compute_mfu_na_cluster_jacobians import _load_model  # noqa: E402
 
-SHARED_ROOT = Path("/users/sbrw610/sharedscratch/RBF_ROM")
+SHARED_ROOT = (next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()))
 MFU = SHARED_ROOT / "results/MFU_NA"
 MEM_LAGS = [4, 8, 16]
 CURVE_LAGS = [4, 8, 16, 32, 53]

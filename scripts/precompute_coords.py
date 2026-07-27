@@ -53,10 +53,10 @@ LOR63 (identity reduction, full 3D coords):
 
 LOR96 F=8 (SVD reduction to d_o=35, paper convention):
     python scripts/precompute_coords.py \
-        --stats-path /mnt/scratch/users/sbrw610/RBF_ROM/data/LOR96/results/vlachas_F8/stats.npz \
-        --svd-path   /users/sbrw610/sharedscratch/RBF_ROM/results/LOR96/F8/svd_basis.npz \
+        --stats-path data/LOR96/results/vlachas_F8/stats.npz \
+        --svd-path   results/LOR96/F8/svd_basis.npz \
         --d-o        35 \
-        --out        /users/sbrw610/sharedscratch/RBF_ROM/results/LOR96/F8/coords.npz
+        --out        results/LOR96/F8/coords.npz
 """
 
 from __future__ import annotations

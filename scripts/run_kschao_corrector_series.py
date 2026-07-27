@@ -40,7 +40,7 @@ from run_integrate_compare import (  # noqa: E402
 )
 from chord2.sindy import rbf_features_mahal  # noqa: E402
 
-SHARED_ROOT = Path("/users/sbrw610/sharedscratch/RBF_ROM")
+SHARED_ROOT = (next(_p for _p in Path(__file__).resolve().parents if (_p / "pyproject.toml").exists()))
 MODEL_DIR = SHARED_ROOT / "results/KS_CHAO/integration_K1_n6000_softreflect"
 DEFAULT_OUT = MODEL_DIR / "corrector_series.npz"
 
